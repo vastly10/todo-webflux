@@ -1,4 +1,4 @@
-package com.practice.todo.domain;
+package com.practice.todo.repository.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

@@ -1,6 +1,6 @@
 package com.practice.todo.repository;
 
-import com.practice.todo.domain.Member;
+import com.practice.todo.repository.entity.Member;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
