@@ -2,6 +2,7 @@ package com.practice.todo.handler;
 
 import com.practice.todo.repository.entity.Member;
 import com.practice.todo.repository.MemberRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
