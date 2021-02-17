@@ -1,6 +1,7 @@
-create table if not exists MEMBER (
-    id varchar2 not null,
-    password varchar2 not null,
-    name varchar2 not null,
-    email varchar2 not null
+create table if not exists TODO (
+    id int primary key auto_increment,
+    title varchar not null,
+    completed boolean not null,
+    reg_time timestamp not null,
+    mod_time timestamp
 );

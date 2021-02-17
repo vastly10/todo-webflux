@@ -1,4 +1,5 @@
-insert into member values ('id1', '1234', 'DB1홍길동', 'hong@gmail.com');
-insert into member values ('id2', '1234', 'DB1홍길동2', 'hong2@gmail.com');
-insert into member values ('id3', '1234', 'DB1홍길동3', 'hong3@gmail.com');
-insert into member values ('id4', '1234', 'DB1홍길동4', 'hong4@gmail.com');
+insert into TODO (title, completed, reg_time) values ('todo1', false, current_timestamp);
+insert into TODO (title, completed, reg_time) values ('todo2', false, current_timestamp);
+insert into TODO (title, completed, reg_time) values ('todo3', false, current_timestamp);
+insert into TODO (title, completed, reg_time) values ('todo4', false, current_timestamp);
+

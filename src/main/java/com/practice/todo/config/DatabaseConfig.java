@@ -6,12 +6,15 @@ import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.r2dbc.mapping.event.BeforeConvertCallback;
 import org.springframework.data.r2dbc.mapping.event.BeforeSaveCallback;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.DatabasePopulator;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
 
 @Configuration
 public class DatabaseConfig {
@@ -31,10 +34,14 @@ public class DatabaseConfig {
         return populator;
     }
 
-//    @Bean
-//    public BeforeSaveCallback<Todo> todoBeforeSaveCallback(DatabaseClient client) {
-//        return (entity, row, table) -> {
-//
-//        };
-//    }
+    @Bean
+    public BeforeConvertCallback<Todo> timeSettingCallback() {
+        return (entity, table) -> {
+            if (entity.getId() == 0) {
+                entity.setRegTime(LocalDateTime.now());
+            }
+            entity.setModTime(LocalDateTime.now());
+            return Mono.just(entity);
+        };
+    }
 }
