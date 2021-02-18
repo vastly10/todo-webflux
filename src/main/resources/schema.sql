@@ -5,3 +5,7 @@ create table if not exists TODO (
     reg_time timestamp not null,
     mod_time timestamp
 );
+
+CREATE SEQUENCE TODO_ID_SEQ
+START WITH 1
+INCREMENT BY 1;

@@ -39,7 +39,9 @@ public class TodoHandler {
                 .flatMap(list -> ServerResponse.ok().bodyValue(list));
     }
 
-//    public Mono<ServerResponse> updateTodo(ServerRequest req) {
-//
-//    }
+    public Mono<ServerResponse> updateTodo(ServerRequest req) {
+        return req.bodyToMono(Todo.class)
+                .flatMap(repository::update)
+                .flatMap(result -> ServerResponse.ok().build());
+    }
 }
