@@ -2,6 +2,7 @@ package com.practice.todo.repository.impl;
 
 import com.practice.todo.repository.TodoCustomRepository;
 import com.practice.todo.repository.entity.Todo;
+import org.reactivestreams.Publisher;
 import org.springframework.data.auditing.AuditingHandlerSupport;
 import org.springframework.data.mapping.callback.EntityCallback;
 import org.springframework.data.mapping.callback.ReactiveEntityCallbacks;
@@ -13,11 +14,11 @@ import org.springframework.data.relational.core.query.Criteria;
 import org.springframework.data.relational.core.query.Query;
 import org.springframework.data.relational.core.query.Update;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
-@Component
 public class TodoCustomRepositoryImpl implements TodoCustomRepository {
 
     private final R2dbcEntityTemplate template;
@@ -43,5 +44,10 @@ public class TodoCustomRepositoryImpl implements TodoCustomRepository {
                 Todo.class
         );
 //        return template.update(todo);
+    }
+
+    @Override
+    public Flux<Integer> updateAll(Publisher<Todo> publisher) {
+        return Flux.from(publisher).concatMap(this::update);
     }
 }

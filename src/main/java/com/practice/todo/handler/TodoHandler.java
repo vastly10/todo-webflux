@@ -44,4 +44,11 @@ public class TodoHandler {
                 .flatMap(repository::update)
                 .flatMap(result -> ServerResponse.ok().build());
     }
+
+    public Mono<ServerResponse> updateAllTodo(ServerRequest req) {
+        Flux<Todo> updateTodo = req.bodyToFlux(Todo.class);
+        return repository.updateAll(updateTodo)
+                .collectList()
+                .flatMap(list -> ServerResponse.ok().bodyValue(list));
+    }
 }

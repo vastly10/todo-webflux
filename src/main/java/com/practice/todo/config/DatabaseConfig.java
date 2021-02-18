@@ -37,10 +37,21 @@ public class DatabaseConfig {
         return populator;
     }
 
-//    @Bean
-//    public BeforeConvertCallback<Todo> createIdCallback() {
-//        return (entity, table) -> {
-//
-//        }
-//    }
+    @Bean
+    public BeforeConvertCallback<Todo> createIdCallback(DatabaseClient client) {
+        return (entity, table) -> {
+            if (isCreate(entity)) {
+                return client
+                        .sql("SELECT TODO_ID_SEQ.nextval")
+                        .map(row -> row.get(0, Long.class))
+                        .first()
+                        .map(key -> new Todo(key, entity.getTitle(), entity.isCompleted(), entity.getRegTime(), entity.getModTime()));
+            }
+            return Mono.just(entity);
+        };
+    }
+
+    private boolean isCreate(Todo todo) {
+        return todo.getId() == 0;
+    }
 }

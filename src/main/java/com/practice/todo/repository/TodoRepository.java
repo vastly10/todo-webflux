@@ -7,6 +7,4 @@ import reactor.core.publisher.Mono;
 
 public interface TodoRepository extends ReactiveCrudRepository<Todo, Integer>, TodoCustomRepository{
 
-    @Query("SELECT TODO_ID_SEQ.NEXTVAL")
-    Mono<Integer> getId();
 }

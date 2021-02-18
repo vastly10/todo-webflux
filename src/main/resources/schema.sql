@@ -1,5 +1,5 @@
 create table if not exists TODO (
-    id int primary key auto_increment,
+    id int primary key,
     title varchar not null,
     completed boolean not null,
     reg_time timestamp not null,

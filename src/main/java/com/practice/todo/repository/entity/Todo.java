@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Table
 public class Todo {
     @Id
-    private int id;
+    private long id;
     private String title;
     private boolean completed;
     @CreatedDate

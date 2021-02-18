@@ -19,7 +19,8 @@ public class TodoRouter {
                     .POST("/delete", handler::deleteTodo)
                     .POST("/save", handler::saveTodo)
                     .POST("/save-all", handler::saveAllTodo)
-                    .POST("/update", handler::updateTodo))
+                    .POST("/update", handler::updateTodo)
+                    .POST("/update-all", handler::updateAllTodo))
                 .build();
     }
 }
